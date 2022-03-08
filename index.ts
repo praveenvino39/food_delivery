@@ -7,15 +7,15 @@ import { HandleError } from './middlewares/ErrorHandler'
 import { ExpressApp } from './services/ExpressApp'
 import { connectToDatabase } from './services/Database'
 import cors from 'cors'
-
-
+require('dotenv').config();
 
 const startServer = async ()=>{
     const app = express()
     app.use(cors())
     await connectToDatabase()
     await ExpressApp(app)
-    app.listen(1000,'0.0.0.0', () => console.log("Server is up and runing"))
+    const PORT = process.env.PORT || 1000
+    app.listen(PORT , () => console.log("Server is up and runing"))
 }
 
 startServer()
