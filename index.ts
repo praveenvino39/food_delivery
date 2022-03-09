@@ -1,8 +1,5 @@
 import bodyParser from 'body-parser'
 import express, { NextFunction, Request, Response } from 'express'
-import { ConnectToDatabase } from './config'
-import { AdminRoutes, ShopingRoutes, VendorRoutes,  } from './routes'
-import { Joi, ValidationError } from "express-validation"
 import { HandleError } from './middlewares/ErrorHandler'
 import { ExpressApp } from './services/ExpressApp'
 import { connectToDatabase } from './services/Database'
