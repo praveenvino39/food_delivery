@@ -7,6 +7,7 @@ import { APP_SECRET } from "../config/AppConfig";
 
 const crypt = bcrypt as any
 
+
 export const GenerateSalt = async () => {
     return await crypt.genSalt()
 }

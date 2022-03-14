@@ -131,9 +131,9 @@ export const CreateFood = async (req: Request, res: Response, next: NextFunction
         if (vendor) {
             const { name, description, category, price, readyTime, type } = <CreateFoodInput>req.body;
             if (name && description && category && price && readyTime && type) {
-                var images = null
+                var images = ""
                 if (req.file != null) {
-                    images = (req.file as any as Express.Multer.File).filename
+                    images = req.file.filename
                 }
                 const food = await Food.create({
                     vendorId: vendor.id,
