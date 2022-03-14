@@ -1,0 +1,17 @@
+import express from 'express'
+import { ExpressApp } from './src/services/ExpressApp'
+import { connectToDatabase } from './src/services/Database'
+import cors from 'cors'
+require('dotenv').config();
+
+const startServer = async ()=>{
+    const app = express()
+    app.use(cors())
+    await connectToDatabase()
+    await ExpressApp(app)
+    app.listen(process.env.PORT,'0.0.0.0' , () => console.log("Server is up and runing"))
+}
+
+startServer()
+
+
