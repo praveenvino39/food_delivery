@@ -9,7 +9,8 @@ const startServer = async ()=>{
     app.use(cors())
     await connectToDatabase()
     await ExpressApp(app)
-    app.listen(process.env.PORT,'0.0.0.0' , () => console.log("Server is up and runing"))
+    const PORT = process.env.PORT||1000
+    app.listen(PORT, () => console.log("Server is up and runing"))
 }
 
 startServer()
