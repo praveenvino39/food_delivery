@@ -1,18 +1,19 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
-import { VendorPayload } from "../dto/Vendor.dto";
 import { Request } from "express"
 import { AuthPayload } from "../dto";
 import { APP_SECRET } from "../config/AppConfig";
 
 
+const crypt = bcrypt as any
+
 export const GenerateSalt = async () => {
-    return await bcrypt.genSalt()
+    return await crypt.genSalt()
 }
 
 
 export const GeneratePassword = async (password: string, salt: string) => {
-    return await bcrypt.hash(password, salt)
+    return await crypt.hash(password, salt)
 }
 
 
