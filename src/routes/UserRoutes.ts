@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { validate } from "express-validation"
 import { GetAllVendor } from "../controllers"
-import { AddAddress, AddToCart, TopRestaurant, CreateUser, LoginUser, VerifyOtp, ViewCart, Checkout } from "../controllers/UserController"
+import { AddAddress, AddToCart, TopRestaurant, CreateUser, LoginUser, VerifyOtp, ViewCart, Checkout, GetFoodsByID } from "../controllers/UserController"
 import { Authenticate } from "../middlewares/CommonAuth"
 import { ValidateAddAdress, ValidateAddtoCart, ValidateCheckout, ValidateCreateUser, ValidateLogin, ValidateVerifyOtp } from "../validators/User.validator"
 
@@ -15,6 +15,8 @@ router.get("/top", TopRestaurant)
 router.post("/signup", validate(ValidateCreateUser, { keyByField: true }, {}), CreateUser)
 router.patch("/verify", validate(ValidateVerifyOtp, { keyByField: true }, {}), VerifyOtp)
 router.post("/signin", validate(ValidateLogin, { keyByField: true }, {}), LoginUser)
+router.get("/vendor/:id", GetFoodsByID)
+
 
 
 

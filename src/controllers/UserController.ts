@@ -23,6 +23,24 @@ export const TopRestaurant = async (req: Request, res: Response, next: NextFunct
 }
 
 
+
+//Get Foods
+export const GetFoodsByID = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const vendor = await Vendor.findById(req.params.id)
+        if (vendor) {
+            const { foods } = await vendor.populate("foods")
+            return res.status(200).json(SendResponse(true, vendor.name, foods))
+        }
+        else {
+            return res.status(404).json(SendResponse(false, "Vendor not available", null))
+        }
+    } catch (e: any) {
+        return res.status(404).json(SendResponse(false, "Vendor not available", null))
+    }
+}
+
+
 export const CreateUser = async (req: Request, res: Response, next: NextFunction) => {
     const { email, phone, password, country, countryCode, city, currency } = <CreateUserInput>req.body;
     const existingUser = await User.findOne({ email })
